@@ -1,18 +1,18 @@
 Summary:	Assistive Technology Service Provider Interface
 Summary(pl):	Interfejs pozwalaj±cy na korzystanie z urz±dzeñ wspomagaj±cych
 Name:		at-spi
-Version:	1.6.0
+Version:	1.6.1
 Release:	1
 License:	LGPL
 Group:		X11/Libraries
 Source0:	http://ftp.gnome.org/pub/gnome/sources/%{name}/1.6/%{name}-%{version}.tar.bz2
-# Source0-md5:	950fc9bb66cf90b720739f3ea5ad8b18
+# Source0-md5:	c06e6a387cb40616e472d5c3b9006f7b
 URL:		http://developer.gnome.org/projects/gap/
 BuildRequires:	ORBit2-devel
 BuildRequires:	atk-devel >= 1:1.8.0
 BuildRequires:	autoconf
 BuildRequires:	automake
-BuildRequires:	gail-devel >= 1.8.0
+BuildRequires:	gail-devel >= 1.8.1
 BuildRequires:	gnome-common >= 2.8.0
 BuildRequires:	gtk-doc >= 1.1
 BuildRequires:	gtk+2-devel >= 2:2.2.3
