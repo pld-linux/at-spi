@@ -7,6 +7,7 @@ License:	LGPL
 Group:		X11/Libraries
 Source0:	http://ftp.gnome.org/pub/gnome/sources/%{name}/1.1/%{name}-%{version}.tar.bz2
 Patch0:		%{name}-am.patch
+Patch1:		%{name}-libs.patch
 URL:		http://developer.gnome.org/projects/gap/
 BuildRequires:	atk-devel >= 1.1.5
 BuildRequires:	gail-devel >= 1.1.5
@@ -61,6 +62,7 @@ Statyczna biblioteka at-spi.
 %prep
 %setup -q
 %patch0 -p1
+%patch1 -p1
 
 %build
 %{__libtoolize}

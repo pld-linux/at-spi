@@ -1,0 +1,12 @@
+diff -urN at-spi-1.1.9.orig/configure.in at-spi-1.1.9/configure.in
+--- at-spi-1.1.9.orig/configure.in	Fri Mar 28 09:16:49 2003
++++ at-spi-1.1.9/configure.in	Fri Mar 28 09:17:09 2003
+@@ -128,7 +128,7 @@
+ PKG_CHECK_MODULES(ATK_BRIDGE, \
+ 	libbonobo-2.0 >= 1.107.0 \
+ 	atk >= 1.1.0)
+-ATK_BRIDGE_LIBS="$ATK_BRIDGE_LIBS -lspi" 
++ATK_BRIDGE_LIBS="$ATK_BRIDGE_LIBS" 
+ AC_SUBST(ATK_BRIDGE_LIBS)
+ AC_SUBST(ATK_BRIDGE_CFLAGS)
+ 
