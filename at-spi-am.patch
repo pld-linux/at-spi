@@ -1,0 +1,26 @@
+diff -urN at-spi-1.1.9.orig/docs/reference/cspi/Makefile.am at-spi-1.1.9/docs/reference/cspi/Makefile.am
+--- at-spi-1.1.9.orig/docs/reference/cspi/Makefile.am	Thu Mar 27 12:37:03 2003
++++ at-spi-1.1.9/docs/reference/cspi/Makefile.am	Thu Mar 27 12:40:02 2003
+@@ -40,9 +40,7 @@
+ #
+ GPATH = $(srcdir)
+ 
+-TARGET_DIR=$(HTML_DIR)/$(DOC_MODULE)
+-
+-EXTRA_DIST =				\
++EXTRA_DIST +=				\
+ 	$(content_files)		\
+ 	$(extra_files)			\
+ 	$(HTML_IMAGES)			\
+diff -urN at-spi-1.1.9.orig/libspi/Makefile.am at-spi-1.1.9/libspi/Makefile.am
+--- at-spi-1.1.9.orig/libspi/Makefile.am	Thu Mar 27 12:37:03 2003
++++ at-spi-1.1.9/libspi/Makefile.am	Thu Mar 27 12:41:40 2003
+@@ -63,7 +63,7 @@
+ 
+ 
+ BUILT_SOURCES = $(IDL_OUT) Accessibility-imodule.c
+-CLEANFILES+= $(IDL_OUT) Accessibility-imodule.c
++CLEANFILES = $(IDL_OUT) Accessibility-imodule.c
+ 
+ libspi_la_SOURCES =		\
+ 	accessible.c		\
