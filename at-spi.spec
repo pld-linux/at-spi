@@ -1,7 +1,7 @@
 Summary:	Assistive Technology Service Provider Interface
 Summary(pl):	Interfejs pozwalaj±cy na korzystanie z urz±dzeñ wspomagaj±cych
 Name:		at-spi
-Version:	1.3.0
+Version:	1.3.1
 Release:	1
 License:	LGPL
 Group:		X11/Libraries
@@ -68,7 +68,6 @@ Statyczna biblioteka at-spi.
 %{__automake}
 %{__autoconf}
 %configure \
-	--with-html-path=%{_gtkdocdir} \
 	--enable-static
 
 %{__make}
@@ -77,8 +76,7 @@ Statyczna biblioteka at-spi.
 rm -rf $RPM_BUILD_ROOT
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT \
-	HTML_DIR=%{_gtkdocdir} \
-	pkgconfigdir=%{_pkgconfigdir} \
+	HTML_DIR=%{_gtkdocdir} 
 
 %clean
 rm -rf $RPM_BUILD_ROOT
