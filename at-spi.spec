@@ -2,8 +2,8 @@ Summary:	Assistive Technology Service Provider Interface
 Name:		at-spi
 Version:	1.0.2
 Release:	1
-Group:		X11/-
-License:	GPL
+License:	LGPL
+Group:		X11/Libraries
 Source0:	http://ftp.gnome.org/pub/GNOME/2.0.1/sources/%{name}/%{name}-%{version}.tar.bz2
 URL:		http://developer.gnome.org/projects/gap
 BuildRequires:	gtk-doc >= 0.9-2
@@ -13,28 +13,34 @@ BuildRequires:	gtk+2-devel >= 2.0.6
 BuildRequires:	atk-devel >= 1.0.3
 BuildRequires:	popt-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
+Obsoletes:	libat-spi1
 
 %define		_prefix		/usr/X11R6
 %define		_gtkdocdir 	%{_defaultdocdir}/gtk-doc/html
 
 %description
-This is the Early Access Release of the Gnome Accessibility Project's           
-Assistive Technology Service Provider Interface. 
+at-spi allows assistive technologies to access GTK-based
+applications. Essentially it exposes the internals of applications for
+automation, so tools such as screen readers, magnifiers, or even
+scripting interfaces can query and interact with GUI controls.
 
 %package devel
-Summary:	at-spi devel files
-Group:		-
+Summary:	at-spi development files
+Group:		X11/Development/Libraries
 Requires:	%{name} = %{version}
 Requires:	gtk-doc-common
+Obsoletes:	libat-spi1-devel
 
 %description devel
+at-spi development files.
 
 %package static
 Summary:	at-spi static library
-Group:		-
+Group:		X11/Development/Libraries
 Requires:	%{name}-devel = %{version}
 
 %description static
+at-spi static library.
 
 %prep
 %setup -q
