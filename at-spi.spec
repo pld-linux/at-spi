@@ -1,17 +1,18 @@
 Summary:	Assistive Technology Service Provider Interface
 Summary(pl):	Interfejs pozwalaj±cy na korzystanie z urz±dzeñ wspomagaj±cych
 Name:		at-spi
-Version:	1.4.2
-Release:	3
+Version:	1.6.0
+Release:	1
 License:	LGPL
 Group:		X11/Libraries
-Source0:	http://ftp.gnome.org/pub/gnome/sources/%{name}/1.4/%{name}-%{version}.tar.bz2
-# Source0-md5:	e36683a6e55fcb5ef2e6ef05806f9c3e
+Source0:	http://ftp.gnome.org/pub/gnome/sources/%{name}/1.6/%{name}-%{version}.tar.bz2
+# Source0-md5:	950fc9bb66cf90b720739f3ea5ad8b18
 URL:		http://developer.gnome.org/projects/gap/
-BuildRequires:	atk-devel >= 1.4.0
+BuildRequires:	ORBit2-devel
+BuildRequires:	atk-devel >= 1:1.8.0
 BuildRequires:	autoconf
 BuildRequires:	automake
-BuildRequires:	gail-devel >= 1.4.0
+BuildRequires:	gail-devel >= 1.8.0
 BuildRequires:	gnome-common
 BuildRequires:	gtk-doc >= 1.1
 BuildRequires:	gtk+2-devel >= 2.2.3
@@ -42,9 +43,10 @@ Summary:	at-spi development files
 Summary(pl):	Pliki programistyczne at-spi
 Group:		X11/Development/Libraries
 Requires:	%{name} = %{version}-%{release}
+Requires:	atk-devel >= 1:1.8.0
+Requires:	gtk+2-devel >= 2.2.3
 Requires:	gtk-doc-common
-Requires:	gtk+2-devel
-Requires:	libbonobo-devel
+Requires:	libbonobo-devel >= 2.4.0
 Obsoletes:	libat-spi1-devel
 
 %description devel
