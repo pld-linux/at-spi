@@ -11,6 +11,7 @@ Patch0:		%{name}-am.patch
 URL:		http://developer.gnome.org/projects/gap/
 BuildRequires:	atk-devel >= 1.4.0
 BuildRequires:	gail-devel >= 1.4.0
+BuildRequires:	gnome-common
 BuildRequires:	gtk-doc >= 1.1
 BuildRequires:	gtk+2-devel >= 2.2.3
 BuildRequires:	libbonobo-devel >= 2.4.0
