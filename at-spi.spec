@@ -10,11 +10,14 @@ Source0:	http://ftp.gnome.org/pub/gnome/sources/%{name}/1.3/%{name}-%{version}.t
 Patch0:		%{name}-am.patch
 URL:		http://developer.gnome.org/projects/gap/
 BuildRequires:	atk-devel >= 1.4.0
+BuildRequires:	autoconf
+BuildRequires:	automake
 BuildRequires:	gail-devel >= 1.4.0
 BuildRequires:	gnome-common
 BuildRequires:	gtk-doc >= 1.1
 BuildRequires:	gtk+2-devel >= 2.2.3
 BuildRequires:	libbonobo-devel >= 2.4.0
+BuildRequires:	libtool
 BuildRequires:	popt-devel
 BuildRequires:	rpm-build >= 4.1-10
 BuildRequires:	xft-devel >= 2.1
@@ -76,6 +79,7 @@ Statyczna biblioteka at-spi.
 
 %install
 rm -rf $RPM_BUILD_ROOT
+
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT \
 	HTML_DIR=%{_gtkdocdir}
@@ -103,7 +107,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/lib*.so
 %{_libdir}/lib*.la
 %{_includedir}/*
-%doc %{_gtkdocdir}/*
+%{_gtkdocdir}/*
 %{_pkgconfigdir}/*
 
 %files static
