@@ -1,16 +1,17 @@
 Summary:	Assistive Technology Service Provider Interface
+Summary(pl):	Interfejs pozwalaj±cy na korzystanie z urz±dzeñ wspomagaj±cych
 Name:		at-spi
 Version:	1.0.2
-Release:	1
+Release:	2
 License:	LGPL
 Group:		X11/Libraries
 Source0:	http://ftp.gnome.org/pub/GNOME/2.0.1/sources/%{name}/%{name}-%{version}.tar.bz2
-URL:		http://developer.gnome.org/projects/gap
-BuildRequires:	gtk-doc >= 0.9-2
-BuildRequires:	libbonobo-devel >= 2.0.0
-BuildRequires:	gail-devel >= 0.17
-BuildRequires:	gtk+2-devel >= 2.0.6
+URL:		http://developer.gnome.org/projects/gap/
 BuildRequires:	atk-devel >= 1.0.3
+BuildRequires:	gail-devel >= 0.17
+BuildRequires:	gtk-doc >= 0.9-2
+BuildRequires:	gtk+2-devel >= 2.0.6
+BuildRequires:	libbonobo-devel >= 2.0.0
 BuildRequires:	popt-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 Obsoletes:	libat-spi1
@@ -24,8 +25,16 @@ applications. Essentially it exposes the internals of applications for
 automation, so tools such as screen readers, magnifiers, or even
 scripting interfaces can query and interact with GUI controls.
 
+%description -l pl
+at-spi pozwala na korzystanie z urz±dzeñ wspomagaj±cych w celu dostêpu
+do aplikacji bazuj±cych na GTK. Przede wszystkim udostêpnia wewnêtrzne
+interfejsy aplikacji dla automatyzacji, wiêc urz±dzenia takie jak
+czytniki ekranu, lupy, czy nawet interfejsy skryptowe mog± odpytywaæ i
+wspó³pracowaæ z kontrolkami interfejsu graficznego.
+
 %package devel
 Summary:	at-spi development files
+Summary(pl):	Pliki programistyczne at-spi
 Group:		X11/Development/Libraries
 Requires:	%{name} = %{version}
 Requires:	gtk-doc-common
@@ -34,13 +43,20 @@ Obsoletes:	libat-spi1-devel
 %description devel
 at-spi development files.
 
+%description devel -l pl
+Pliki programistyczne at-spi.
+
 %package static
 Summary:	at-spi static library
+Summary(pl):	Statyczna biblioteka at-spi
 Group:		X11/Development/Libraries
 Requires:	%{name}-devel = %{version}
 
 %description static
 at-spi static library.
+
+%description static -l pl
+Statyczna biblioteka at-spi.
 
 %prep
 %setup -q
