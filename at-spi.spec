@@ -1,10 +1,11 @@
-Summary:	at-spi
+Summary:	Assistive Technology Service Provider Interface
 Name:		at-spi
-Version:	1.0.0
-Release:	0.1
+Version:	1.0.1
+Release:	1
 Group:		X11/-
-License:	Foo
+License:	GPL
 Source0:	ftp://ftp.gnome.org/pub/gnome/pre-gnome2/sources/%{name}/%{name}-%{version}.tar.bz2
+URL:		http://developer.gnome.org/projects/gap
 BuildRequires:	gtk-doc >= 0.9-2
 BuildRequires:	libbonobo-devel >= 2.0.0
 BuildRequires:	gail-devel >= 0.13
@@ -17,7 +18,8 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 %define		_gtkdocdir 	/usr/share/doc/gtk-doc/html
 
 %description
-at-poke
+This is the Early Access Release of the Gnome Accessibility Project's           
+Assistive Technology Service Provider Interface. 
 
 %package devel
 Summary:	at-spi devel files
