@@ -19,7 +19,7 @@ Obsoletes:	libat-spi1
 %define		_prefix			/usr/X11R6
 %define		_gtkdocdir 		%{_defaultdocdir}/gtk-doc/html
 %define		orbit_libdir		/usr/lib/orbit-2.0
-%define		_bonobo_serverdir	/usr/lib/bonobo/servers
+%define		_bonobo_server_dir	/usr/lib/bonobo/servers
 
 %description
 at-spi allows assistive technologies to access GTK-based
@@ -77,7 +77,7 @@ rm -rf $RPM_BUILD_ROOT
 	HTML_DIR=%{_gtkdocdir} \
 	pkgconfigdir=%{_pkgconfigdir} \
 	orbittypelibdir=%{orbit_libdir} \
-	serverinfodir=%{_bonobo_serverdir}
+	serverinfodir=%{_bonobo_server_dir}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -91,7 +91,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/at-spi-registryd
 %attr(755,root,root) %{orbit_libdir}/*.??
 %attr(755,root,root) %{_libdir}/gtk-2.0/modules/lib*.??
-%{_bonobo_serverdir}/*
+%{_bonobo_server_dir}/*
 %{_datadir}/idl/*
 
 %files devel
