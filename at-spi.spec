@@ -43,7 +43,10 @@ Summary:	at-spi development files
 Summary(pl):	Pliki programistyczne at-spi
 Group:		X11/Development/Libraries
 Requires:	%{name} = %{version}-%{release}
+Requires:	atk-devel >= 1.7.1
+Requires:	gtk+2-devel >= 2.2.3
 Requires:	gtk-doc-common
+Requires:	libbonobo-devel >= 2.4.0
 Obsoletes:	libat-spi1-devel
 
 %description devel
