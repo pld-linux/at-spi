@@ -15,7 +15,7 @@ BuildRequires:	gtk+2-devel >= 2.2.0
 BuildRequires:	libbonobo-devel >= 2.0.0
 BuildRequires:	popt-devel
 BuildRequires:	rpm-build >= 4.1-10
-BuildRequires:	Xft-devel >= 2.1
+BuildRequires:	xft-devel >= 2.1
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 Obsoletes:	libat-spi1
 
@@ -78,6 +78,9 @@ rm -rf $RPM_BUILD_ROOT
 	DESTDIR=$RPM_BUILD_ROOT \
 	HTML_DIR=%{_gtkdocdir} 
 
+# no static modules
+rm -f $RPM_BUILD_ROOT%{_libdir}/{gtk-2.0/modules,orbit-2.0}/*.{la,a}
+
 %clean
 rm -rf $RPM_BUILD_ROOT
 
@@ -86,19 +89,17 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/*.so.*.*
+%attr(755,root,root) %{_libdir}/lib*.so.*.*
 %attr(755,root,root) %{_libdir}/at-spi-registryd
-%{_libdir}/orbit-2.0/*.la
 %attr(755,root,root) %{_libdir}/orbit-2.0/*.so
-%{_libdir}/gtk-2.0/modules/lib*.la
 %attr(755,root,root) %{_libdir}/gtk-2.0/modules/lib*.so
 %{_libdir}/bonobo/servers/*
 %{_datadir}/idl/*
 
 %files devel
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/*.so
-%{_libdir}/*.la
+%attr(755,root,root) %{_libdir}/lib*.so
+%{_libdir}/lib*.la
 %{_includedir}/*
 %doc %{_gtkdocdir}/*
 %{_pkgconfigdir}/*
@@ -106,5 +107,3 @@ rm -rf $RPM_BUILD_ROOT
 %files static
 %defattr(644,root,root,755)
 %{_libdir}/*.a
-%{_libdir}/gtk-2.0/modules/*.a 
-%{_libdir}/orbit-2.0/*.a
