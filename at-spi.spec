@@ -1,18 +1,17 @@
 Summary:	Assistive Technology Service Provider Interface
 Summary(pl):	Interfejs pozwalaj±cy na korzystanie z urz±dzeñ wspomagaj±cych
 Name:		at-spi
-Version:	1.1.9
+Version:	1.3.0
 Release:	1
 License:	LGPL
 Group:		X11/Libraries
-Source0:	http://ftp.gnome.org/pub/gnome/sources/%{name}/1.1/%{name}-%{version}.tar.bz2
+Source0:	http://ftp.gnome.org/pub/gnome/sources/%{name}/1.3/%{name}-%{version}.tar.bz2
 Patch0:		%{name}-am.patch
-Patch1:		%{name}-libs.patch
 URL:		http://developer.gnome.org/projects/gap/
-BuildRequires:	atk-devel >= 1.1.5
-BuildRequires:	gail-devel >= 1.1.5
+BuildRequires:	atk-devel >= 1.3.1
+BuildRequires:	gail-devel >= 1.3.1
 BuildRequires:	gtk-doc >= 0.10-1
-BuildRequires:	gtk+2-devel >= 2.1.5
+BuildRequires:	gtk+2-devel >= 2.2.0
 BuildRequires:	libbonobo-devel >= 2.0.0
 BuildRequires:	popt-devel
 BuildRequires:	rpm-build >= 4.1-10
@@ -62,7 +61,6 @@ Statyczna biblioteka at-spi.
 %prep
 %setup -q
 %patch0 -p1
-%patch1 -p1
 
 %build
 %{__libtoolize}
