@@ -1,15 +1,15 @@
 Summary:	Assistive Technology Service Provider Interface
 Summary(pl):	Interfejs pozwalaj±cy na korzystanie z urz±dzeñ wspomagaj±cych
 Name:		at-spi
-Version:	1.1.2
+Version:	1.1.5
 Release:	1
 License:	LGPL
 Group:		X11/Libraries
 Source0:	http://ftp.gnome.org/pub/gnome/sources/%{name}/1.1/%{name}-%{version}.tar.bz2
 URL:		http://developer.gnome.org/projects/gap/
-BuildRequires:	atk-devel >= 1.1.0
-BuildRequires:	gail-devel >= 1.1.2
-BuildRequires:	gtk-doc >= 0.9-7
+BuildRequires:	atk-devel >= 1.1.3
+BuildRequires:	gail-devel >= 1.1.3
+BuildRequires:	gtk-doc >= 0.10-1
 BuildRequires:	gtk+2-devel >= 2.0.6
 BuildRequires:	libbonobo-devel >= 2.0.0
 BuildRequires:	popt-devel
@@ -18,6 +18,7 @@ Obsoletes:	libat-spi1
 
 %define		_prefix		/usr/X11R6
 %define		_gtkdocdir 	%{_defaultdocdir}/gtk-doc/html
+%define		orbit_libdir	/usr/lib/orbit-2.0
 
 %description
 at-spi allows assistive technologies to access GTK-based
@@ -73,7 +74,8 @@ rm -rf $RPM_BUILD_ROOT
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT \
 	HTML_DIR=%{_gtkdocdir} \
-	pkgconfigdir=%{_pkgconfigdir}
+	pkgconfigdir=%{_pkgconfigdir} \
+	orbittypelibdir=%{orbit_libdir}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -83,11 +85,11 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-#%attr(755,root,root) %{_bindir}/*
 %attr(755,root,root) %{_libdir}/*.so.*.*
 %attr(755,root,root) %{_libdir}/at-spi-registryd
+%attr(755,root,root) %{orbit_libdir}/*.??
+%attr(755,root,root) %{_libdir}/gtk-2.0/modules/lib*.??
 %{_libdir}/bonobo/servers/*
-%attr(755,root,root) %{_libdir}/orbit-2.0/*.??
 %{_datadir}/idl/*
 
 %files devel
@@ -101,3 +103,5 @@ rm -rf $RPM_BUILD_ROOT
 %files static
 %defattr(644,root,root,755)
 %{_libdir}/*.a
+%{_libdir}/gtk-2.0/modules/*.a 
+%{orbit_libdir}/*.a
