@@ -1,7 +1,7 @@
 Summary:	Assistive Technology Service Provider Interface
 Summary(pl):	Interfejs pozwalaj±cy na korzystanie z urz±dzeñ wspomagaj±cych
 Name:		at-spi
-Version:	1.1.7
+Version:	1.1.8
 Release:	1
 License:	LGPL
 Group:		X11/Libraries
@@ -10,10 +10,10 @@ URL:		http://developer.gnome.org/projects/gap/
 BuildRequires:	atk-devel >= 1.1.5
 BuildRequires:	gail-devel >= 1.1.5
 BuildRequires:	gtk-doc >= 0.10-1
-BuildRequires:	gtk+2-devel >= 2.1.3
+BuildRequires:	gtk+2-devel >= 2.1.5
 BuildRequires:	libbonobo-devel >= 2.0.0
 BuildRequires:	popt-devel
-BuildRequires:	rpm-build >= 4.1-8.2
+BuildRequires:	rpm-build >= 4.1-10
 BuildRequires:	Xft-devel >= 2.1
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 Obsoletes:	libat-spi1
