@@ -1,13 +1,12 @@
 Summary:	Assistive Technology Service Provider Interface
 Summary(pl):	Interfejs pozwalaj±cy na korzystanie z urz±dzeñ wspomagaj±cych
 Name:		at-spi
-Version:	1.3.12
+Version:	1.3.13
 Release:	1
 License:	LGPL
 Group:		X11/Libraries
 Source0:	http://ftp.gnome.org/pub/gnome/sources/%{name}/1.3/%{name}-%{version}.tar.bz2
-# Source0-md5:	f6a45cbe7497e9522ac3a2ca86d3a7aa
-Patch0:		%{name}-am.patch
+# Source0-md5:	73a451166fe07906dacc335c803963b2
 URL:		http://developer.gnome.org/projects/gap/
 BuildRequires:	atk-devel >= 1.4.0
 BuildRequires:	autoconf
@@ -18,6 +17,7 @@ BuildRequires:	gtk-doc >= 1.1
 BuildRequires:	gtk+2-devel >= 2.2.3
 BuildRequires:	libbonobo-devel >= 2.4.0
 BuildRequires:	libtool
+BuildRequires:	perl-base
 BuildRequires:	popt-devel
 BuildRequires:	rpm-build >= 4.1-10
 BuildRequires:	xft-devel >= 2.1
@@ -41,7 +41,7 @@ wspó³pracowaæ z kontrolkami interfejsu graficznego.
 Summary:	at-spi development files
 Summary(pl):	Pliki programistyczne at-spi
 Group:		X11/Development/Libraries
-Requires:	%{name} = %{version}
+Requires:	%{name} = %{version}-%{release}
 Requires:	gtk-doc-common
 Obsoletes:	libat-spi1-devel
 
@@ -55,7 +55,7 @@ Pliki programistyczne at-spi.
 Summary:	at-spi static library
 Summary(pl):	Statyczna biblioteka at-spi
 Group:		X11/Development/Libraries
-Requires:	%{name}-devel = %{version}
+Requires:	%{name}-devel = %{version}-%{release}
 
 %description static
 at-spi static library.
@@ -65,7 +65,6 @@ Statyczna biblioteka at-spi.
 
 %prep
 %setup -q
-%patch0 -p1
 
 %build
 %{__libtoolize}
@@ -73,7 +72,9 @@ Statyczna biblioteka at-spi.
 %{__automake}
 %{__autoconf}
 %configure \
-	--enable-static
+	--enable-static \
+	--enable-gtk-doc \
+	--with-html-dir=%{_gtkdocdir}
 
 %{__make}
 
