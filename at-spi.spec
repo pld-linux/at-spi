@@ -9,7 +9,7 @@ Source0:	http://ftp.gnome.org/pub/gnome/sources/%{name}/1.5/%{name}-%{version}.t
 # Source0-md5:	3af09f300b050aef1ad704c3532ed33f
 URL:		http://developer.gnome.org/projects/gap/
 BuildRequires:	ORBit2-devel
-BuildRequires:	atk-devel >= 1.7.2
+BuildRequires:	atk-devel >= 1:1.7.2
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	gail-devel >= 1.4.0
@@ -43,7 +43,7 @@ Summary:	at-spi development files
 Summary(pl):	Pliki programistyczne at-spi
 Group:		X11/Development/Libraries
 Requires:	%{name} = %{version}-%{release}
-Requires:	atk-devel >= 1.7.2
+Requires:	atk-devel >= 1:1.7.2
 Requires:	gtk+2-devel >= 2.2.3
 Requires:	gtk-doc-common
 Requires:	libbonobo-devel >= 2.4.0
