@@ -16,6 +16,7 @@ BuildRequires:	gail-devel >= 1.8.1
 BuildRequires:	gnome-common >= 2.8.0
 BuildRequires:	gtk-doc >= 1.1
 BuildRequires:	gtk+2-devel >= 2:2.6.3
+BuildRequires:	intltool
 BuildRequires:	libbonobo-devel >= 2.8.0
 BuildRequires:	libtool
 BuildRequires:	perl-base
