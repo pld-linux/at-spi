@@ -1,3 +1,6 @@
+# Conditional build:
+%bcond_without	static_libs	# don't build static library
+#
 Summary:	Assistive Technology Service Provider Interface
 Summary(pl):	Interfejs pozwalaj±cy na korzystanie z urz±dzeñ wspomagaj±cych
 Name:		at-spi
@@ -80,7 +83,8 @@ Statyczna biblioteka at-spi.
 %configure \
 	--enable-static \
 	--enable-gtk-doc \
-	--with-html-dir=%{_gtkdocdir}
+	--with-html-dir=%{_gtkdocdir} \
+	%{!?with_static_libs:--disable-static}
 %{__make}
 
 %install
@@ -116,6 +120,8 @@ rm -rf $RPM_BUILD_ROOT
 %{_gtkdocdir}/*
 %{_pkgconfigdir}/*
 
+%if %{with static_libs}
 %files static
 %defattr(644,root,root,755)
 %{_libdir}/*.a
+%endif
