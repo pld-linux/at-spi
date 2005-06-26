@@ -5,7 +5,7 @@ Summary:	Assistive Technology Service Provider Interface
 Summary(pl):	Interfejs pozwalaj±cy na korzystanie z urz±dzeñ wspomagaj±cych
 Name:		at-spi
 Version:	1.6.4
-Release:	1
+Release:	2
 License:	LGPL v2+
 Group:		X11/Libraries
 Source0:	http://ftp.gnome.org/pub/gnome/sources/at-spi/1.6/%{name}-%{version}.tar.bz2
@@ -22,9 +22,7 @@ BuildRequires:	gtk+2-devel >= 2:2.6.3
 BuildRequires:	intltool
 BuildRequires:	libbonobo-devel >= 2.8.0
 BuildRequires:	libtool
-BuildRequires:	perl-base
 BuildRequires:	pkgconfig
-BuildRequires:	popt-devel
 BuildRequires:	rpm-build >= 4.1-10
 BuildRequires:	xft-devel >= 2.1
 Obsoletes:	libat-spi1
@@ -48,7 +46,9 @@ Summary:	at-spi development files
 Summary(pl):	Pliki programistyczne at-spi
 Group:		X11/Development/Libraries
 Requires:	%{name} = %{version}-%{release}
+Requires:	ORBit2-devel
 Requires:	atk-devel >= 1:1.9.0
+Requires:	gail-devel >= 1.8.1
 Requires:	gtk+2-devel >= 2:2.6.3
 Requires:	gtk-doc-common
 Requires:	libbonobo-devel >= 2.8.0
