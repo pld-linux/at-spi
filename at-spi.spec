@@ -105,12 +105,12 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%{_datadir}/idl/*
-%attr(755,root,root) %{_libdir}/at-spi-registryd
-%{_libdir}/bonobo/servers/*
-%attr(755,root,root) %{_libdir}/gtk-2.0/modules/lib*.so
 %attr(755,root,root) %{_libdir}/lib*.so.*.*
+%attr(755,root,root) %{_libdir}/at-spi-registryd
 %attr(755,root,root) %{_libdir}/orbit-2.0/*.so
+%attr(755,root,root) %{_libdir}/gtk-2.0/modules/lib*.so
+%{_libdir}/bonobo/servers/*
+%{_datadir}/idl/*
 
 %files devel
 %defattr(644,root,root,755)
