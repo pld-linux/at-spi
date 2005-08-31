@@ -4,12 +4,12 @@
 Summary:	Assistive Technology Service Provider Interface
 Summary(pl):	Interfejs pozwalaj±cy na korzystanie z urz±dzeñ wspomagaj±cych
 Name:		at-spi
-Version:	1.6.4
-Release:	2
+Version:	1.6.5
+Release:	1
 License:	LGPL v2+
 Group:		X11/Libraries
 Source0:	http://ftp.gnome.org/pub/gnome/sources/at-spi/1.6/%{name}-%{version}.tar.bz2
-# Source0-md5:	be8b3077e2fab51a427303f228dffc2e
+# Source0-md5:	42364e5a4fed73894f702e6042bd5985
 URL:		http://developer.gnome.org/projects/gap/
 BuildRequires:	ORBit2-devel
 BuildRequires:	atk-devel >= 1:1.9.0
@@ -81,10 +81,10 @@ Statyczna biblioteka at-spi.
 %{__automake}
 %{__autoconf}
 %configure \
-	--enable-static \
+	%{!?with_static_libs:--disable-static} \
 	--enable-gtk-doc \
-	--with-html-dir=%{_gtkdocdir} \
-	%{!?with_static_libs:--disable-static}
+	--enable-static \
+	--with-html-dir=%{_gtkdocdir}
 %{__make}
 
 %install
@@ -105,19 +105,19 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/lib*.so.*.*
-%attr(755,root,root) %{_libdir}/at-spi-registryd
-%attr(755,root,root) %{_libdir}/orbit-2.0/*.so
-%attr(755,root,root) %{_libdir}/gtk-2.0/modules/lib*.so
-%{_libdir}/bonobo/servers/*
 %{_datadir}/idl/*
+%attr(755,root,root) %{_libdir}/at-spi-registryd
+%{_libdir}/bonobo/servers/*
+%attr(755,root,root) %{_libdir}/gtk-2.0/modules/lib*.so
+%attr(755,root,root) %{_libdir}/lib*.so.*.*
+%attr(755,root,root) %{_libdir}/orbit-2.0/*.so
 
 %files devel
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/lib*.so
-%{_libdir}/lib*.la
 %{_includedir}/*
 %{_gtkdocdir}/*
+%attr(755,root,root) %{_libdir}/lib*.so
+%{_libdir}/lib*.la
 %{_pkgconfigdir}/*
 
 %if %{with static_libs}
