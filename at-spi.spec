@@ -1,30 +1,32 @@
+#
 # Conditional build:
 %bcond_without	static_libs	# don't build static library
 #
 Summary:	Assistive Technology Service Provider Interface
 Summary(pl):	Interfejs pozwalaj±cy na korzystanie z urz±dzeñ wspomagaj±cych
 Name:		at-spi
-Version:	1.6.6
+Version:	1.7.9
 Release:	1
 License:	LGPL v2+
 Group:		X11/Libraries
-Source0:	http://ftp.gnome.org/pub/gnome/sources/at-spi/1.6/%{name}-%{version}.tar.bz2
-# Source0-md5:	9669ee9e3633ffb43a70795edd748e4d
+Source0:	http://ftp.gnome.org/pub/gnome/sources/at-spi/1.7/%{name}-%{version}.tar.bz2
+# Source0-md5:	9515f730ea7e9d00690d4181b20990a0
 URL:		http://developer.gnome.org/projects/gap/
 BuildRequires:	ORBit2-devel
 BuildRequires:	atk-devel >= 1:1.10.3
 BuildRequires:	autoconf
 BuildRequires:	automake
-BuildRequires:	gail-devel >= 1.8.5
-BuildRequires:	gnome-common >= 2.8.0
-BuildRequires:	gtk-doc >= 1.4
-BuildRequires:	gtk+2-devel >= 2:2.8.3
+BuildRequires:	gail-devel >= 1.9.0
+BuildRequires:	gnome-common >= 2.12.0
+BuildRequires:	gtk+2-devel >= 2:2.10.0
+BuildRequires:	gtk-doc >= 1.6
 BuildRequires:	intltool
-BuildRequires:	libbonobo-devel >= 2.8.0
+BuildRequires:	libbonobo-devel >= 2.15.0
 BuildRequires:	libtool
 BuildRequires:	pkgconfig
 BuildRequires:	rpm-build >= 4.1-10
-BuildRequires:	xft-devel >= 2.1
+BuildRequires:	xorg-lib-libXft-devel >= 2.1
+BuildRequires:	xorg-lib-libXtst-devel
 Obsoletes:	libat-spi1
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -47,11 +49,11 @@ Summary(pl):	Pliki programistyczne at-spi
 Group:		X11/Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 Requires:	ORBit2-devel
-Requires:	atk-devel >= 1:1.9.0
-Requires:	gail-devel >= 1.8.1
-Requires:	gtk+2-devel >= 2:2.6.3
+Requires:	atk-devel >= 1:1.12.1
+Requires:	gail-devel >= 1.9.0
+Requires:	gtk+2-devel >= 2:2.10.0
 Requires:	gtk-doc-common
-Requires:	libbonobo-devel >= 2.8.0
+Requires:	libbonobo-devel >= 2.15.0
 Obsoletes:	libat-spi1-devel
 
 %description devel
@@ -80,6 +82,7 @@ Statyczna biblioteka at-spi.
 %{__aclocal}
 %{__automake}
 %{__autoconf}
+LDFLAGS="%{rpmldflags} -Wl,--as-needed"
 %configure \
 	%{!?with_static_libs:--disable-static} \
 	--enable-gtk-doc \
@@ -97,13 +100,15 @@ rm -rf $RPM_BUILD_ROOT
 # no static modules
 rm -f $RPM_BUILD_ROOT%{_libdir}/{gtk-2.0/modules,orbit-2.0}/*.{la,a}
 
+%find_lang %{name}
+
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %post	-p /sbin/ldconfig
 %postun	-p /sbin/ldconfig
 
-%files
+%files -f %{name}.lang
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/lib*.so.*.*
 %attr(755,root,root) %{_libdir}/at-spi-registryd
