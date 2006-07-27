@@ -1,24 +1,27 @@
 #
+# TODO:
+# - package reference html docs or removed it
+# 
 # Conditional build:
 %bcond_without	static_libs	# don't build static library
 #
 Summary:	Assistive Technology Service Provider Interface
 Summary(pl):	Interfejs pozwalaj±cy na korzystanie z urz±dzeñ wspomagaj±cych
 Name:		at-spi
-Version:	1.7.9
+Version:	1.7.10
 Release:	1
 License:	LGPL v2+
 Group:		X11/Libraries
 Source0:	http://ftp.gnome.org/pub/gnome/sources/at-spi/1.7/%{name}-%{version}.tar.bz2
-# Source0-md5:	04e88cfd462861f12ed2d11da3279d31
+# Source0-md5:	4d233cbccb69865c07358d04e97d86cf
 URL:		http://developer.gnome.org/projects/gap/
 BuildRequires:	ORBit2-devel
-BuildRequires:	atk-devel >= 1:1.10.3
+BuildRequires:	atk-devel >= 1:1.12.1
 BuildRequires:	autoconf
 BuildRequires:	automake
-BuildRequires:	gail-devel >= 1.9.0
+BuildRequires:	gail-devel >= 1.9.1
 BuildRequires:	gnome-common >= 2.12.0
-BuildRequires:	gtk+2-devel >= 2:2.10.0
+BuildRequires:	gtk+2-devel >= 2:2.10.1
 BuildRequires:	gtk-doc >= 1.6
 BuildRequires:	intltool
 BuildRequires:	libbonobo-devel >= 2.15.0
@@ -82,7 +85,6 @@ Statyczna biblioteka at-spi.
 %{__aclocal}
 %{__automake}
 %{__autoconf}
-LDFLAGS="%{rpmldflags} -Wl,--as-needed"
 %configure \
 	%{!?with_static_libs:--disable-static} \
 	--enable-gtk-doc \
