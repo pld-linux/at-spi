@@ -1,30 +1,27 @@
 #
-# TODO:
-# - package reference html docs or removed it
-# 
 # Conditional build:
 %bcond_without	static_libs	# don't build static library
 #
 Summary:	Assistive Technology Service Provider Interface
 Summary(pl):	Interfejs pozwalaj±cy na korzystanie z urz±dzeñ wspomagaj±cych
 Name:		at-spi
-Version:	1.7.10
+Version:	1.7.11
 Release:	1
 License:	LGPL v2+
 Group:		X11/Libraries
 Source0:	http://ftp.gnome.org/pub/gnome/sources/at-spi/1.7/%{name}-%{version}.tar.bz2
-# Source0-md5:	4d233cbccb69865c07358d04e97d86cf
+# Source0-md5:	f9770a342c311a5d7bcff0dcb6fd9369
 URL:		http://developer.gnome.org/projects/gap/
-BuildRequires:	ORBit2-devel
-BuildRequires:	atk-devel >= 1:1.12.1
+BuildRequires:	ORBit2-devel >= 2.14.2
+BuildRequires:	atk-devel >= 1:1.12.2
 BuildRequires:	autoconf
 BuildRequires:	automake
-BuildRequires:	gail-devel >= 1.9.1
+BuildRequires:	gail-devel >= 1.9.2
 BuildRequires:	gnome-common >= 2.12.0
-BuildRequires:	gtk+2-devel >= 2:2.10.1
-BuildRequires:	gtk-doc >= 1.6
+BuildRequires:	gtk+2-devel >= 2:2.10.2
+BuildRequires:	gtk-doc >= 1.7
 BuildRequires:	intltool
-BuildRequires:	libbonobo-devel >= 2.15.0
+BuildRequires:	libbonobo-devel >= 2.15.3
 BuildRequires:	libtool
 BuildRequires:	pkgconfig
 BuildRequires:	rpm-build >= 4.1-10
@@ -51,12 +48,11 @@ Summary:	at-spi development files
 Summary(pl):	Pliki programistyczne at-spi
 Group:		X11/Development/Libraries
 Requires:	%{name} = %{version}-%{release}
-Requires:	ORBit2-devel
-Requires:	atk-devel >= 1:1.12.1
-Requires:	gail-devel >= 1.9.0
-Requires:	gtk+2-devel >= 2:2.10.0
-Requires:	gtk-doc-common
-Requires:	libbonobo-devel >= 2.15.0
+Requires:	ORBit2-devel >= 2.14.2
+Requires:	atk-devel >= 1:1.12.2
+Requires:	gail-devel >= 1.9.2
+Requires:	gtk+2-devel >= 2:2.10.2
+Requires:	libbonobo-devel >= 2.15.3
 Obsoletes:	libat-spi1-devel
 
 %description devel
@@ -76,6 +72,18 @@ at-spi static library.
 
 %description static -l pl
 Statyczna biblioteka at-spi.
+
+%package apidocs
+Summary:	at-spi API documentation
+Summary(pl):	Dokumentacja API at-spi
+Group:		Documentation
+Requires:	gtk-doc-common
+
+%description apidocs
+at-spi API documentation.
+
+%description apidocs -l pl
+Dokumentacja API at-spi.
 
 %prep
 %setup -q
@@ -102,6 +110,8 @@ rm -rf $RPM_BUILD_ROOT
 # no static modules
 rm -f $RPM_BUILD_ROOT%{_libdir}/{gtk-2.0/modules,orbit-2.0}/*.{la,a}
 
+rm -r $RPM_BUILD_ROOT%{_datadir}/locale/ug
+
 %find_lang %{name}
 
 %clean
@@ -122,7 +132,6 @@ rm -rf $RPM_BUILD_ROOT
 %files devel
 %defattr(644,root,root,755)
 %{_includedir}/*
-%{_gtkdocdir}/*
 %attr(755,root,root) %{_libdir}/lib*.so
 %{_libdir}/lib*.la
 %{_pkgconfigdir}/*
@@ -132,3 +141,8 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %{_libdir}/*.a
 %endif
+
+%files apidocs
+%defattr(644,root,root,755)
+%{_gtkdocdir}/*
+%{_docdir}/%{name}-%{version}
