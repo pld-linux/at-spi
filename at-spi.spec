@@ -110,8 +110,6 @@ rm -rf $RPM_BUILD_ROOT
 # no static modules
 rm -f $RPM_BUILD_ROOT%{_libdir}/{gtk-2.0/modules,orbit-2.0}/*.{la,a}
 
-rm -r $RPM_BUILD_ROOT%{_datadir}/locale/ug
-
 %find_lang %{name}
 
 %clean
