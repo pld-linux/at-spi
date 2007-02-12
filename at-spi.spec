@@ -3,7 +3,7 @@
 %bcond_without	static_libs	# don't build static library
 #
 Summary:	Assistive Technology Service Provider Interface
-Summary(pl.UTF-8):   Interfejs pozwalający na korzystanie z urządzeń wspomagających
+Summary(pl.UTF-8):	Interfejs pozwalający na korzystanie z urządzeń wspomagających
 Name:		at-spi
 Version:	1.7.15
 Release:	1
@@ -45,7 +45,7 @@ współpracować z kontrolkami interfejsu graficznego.
 
 %package devel
 Summary:	at-spi development files
-Summary(pl.UTF-8):   Pliki programistyczne at-spi
+Summary(pl.UTF-8):	Pliki programistyczne at-spi
 Group:		X11/Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 Requires:	ORBit2-devel >= 2.14.4
@@ -63,7 +63,7 @@ Pliki programistyczne at-spi.
 
 %package static
 Summary:	at-spi static library
-Summary(pl.UTF-8):   Statyczna biblioteka at-spi
+Summary(pl.UTF-8):	Statyczna biblioteka at-spi
 Group:		X11/Development/Libraries
 Requires:	%{name}-devel = %{version}-%{release}
 
@@ -75,7 +75,7 @@ Statyczna biblioteka at-spi.
 
 %package apidocs
 Summary:	at-spi API documentation
-Summary(pl.UTF-8):   Dokumentacja API at-spi
+Summary(pl.UTF-8):	Dokumentacja API at-spi
 Group:		Documentation
 Requires:	gtk-doc-common
 
