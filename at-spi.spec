@@ -3,7 +3,7 @@
 %bcond_without	static_libs	# don't build static library
 #
 Summary:	Assistive Technology Service Provider Interface
-Summary(pl):	Interfejs pozwalaj±cy na korzystanie z urz±dzeñ wspomagaj±cych
+Summary(pl.UTF-8):   Interfejs pozwalajÄ…cy na korzystanie z urzÄ…dzeÅ„ wspomagajÄ…cych
 Name:		at-spi
 Version:	1.7.15
 Release:	1
@@ -36,16 +36,16 @@ applications. Essentially it exposes the internals of applications for
 automation, so tools such as screen readers, magnifiers, or even
 scripting interfaces can query and interact with GUI controls.
 
-%description -l pl
-at-spi pozwala na korzystanie z urz±dzeñ wspomagaj±cych w celu dostêpu
-do aplikacji bazuj±cych na GTK. Przede wszystkim udostêpnia wewnêtrzne
-interfejsy aplikacji dla automatyzacji, wiêc urz±dzenia takie jak
-czytniki ekranu, lupy, czy nawet interfejsy skryptowe mog± odpytywaæ i
-wspó³pracowaæ z kontrolkami interfejsu graficznego.
+%description -l pl.UTF-8
+at-spi pozwala na korzystanie z urzÄ…dzeÅ„ wspomagajÄ…cych w celu dostÄ™pu
+do aplikacji bazujÄ…cych na GTK. Przede wszystkim udostÄ™pnia wewnÄ™trzne
+interfejsy aplikacji dla automatyzacji, wiÄ™c urzÄ…dzenia takie jak
+czytniki ekranu, lupy, czy nawet interfejsy skryptowe mogÄ… odpytywaÄ‡ i
+wspÃ³Å‚pracowaÄ‡ z kontrolkami interfejsu graficznego.
 
 %package devel
 Summary:	at-spi development files
-Summary(pl):	Pliki programistyczne at-spi
+Summary(pl.UTF-8):   Pliki programistyczne at-spi
 Group:		X11/Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 Requires:	ORBit2-devel >= 2.14.4
@@ -58,31 +58,31 @@ Obsoletes:	libat-spi1-devel
 %description devel
 at-spi development files.
 
-%description devel -l pl
+%description devel -l pl.UTF-8
 Pliki programistyczne at-spi.
 
 %package static
 Summary:	at-spi static library
-Summary(pl):	Statyczna biblioteka at-spi
+Summary(pl.UTF-8):   Statyczna biblioteka at-spi
 Group:		X11/Development/Libraries
 Requires:	%{name}-devel = %{version}-%{release}
 
 %description static
 at-spi static library.
 
-%description static -l pl
+%description static -l pl.UTF-8
 Statyczna biblioteka at-spi.
 
 %package apidocs
 Summary:	at-spi API documentation
-Summary(pl):	Dokumentacja API at-spi
+Summary(pl.UTF-8):   Dokumentacja API at-spi
 Group:		Documentation
 Requires:	gtk-doc-common
 
 %description apidocs
 at-spi API documentation.
 
-%description apidocs -l pl
+%description apidocs -l pl.UTF-8
 Dokumentacja API at-spi.
 
 %prep
