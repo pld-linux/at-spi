@@ -5,36 +5,38 @@
 Summary:	Assistive Technology Service Provider Interface
 Summary(pl.UTF-8):	Interfejs pozwalający na korzystanie z urządzeń wspomagających
 Name:		at-spi
-Version:	1.7.15
+Version:	1.18.0
 Release:	1
 License:	LGPL v2+
 Group:		X11/Libraries
-Source0:	http://ftp.gnome.org/pub/gnome/sources/at-spi/1.7/%{name}-%{version}.tar.bz2
-# Source0-md5:	b8af15556d24e850feb2ffb40eda1d31
+Source0:	http://ftp.gnome.org/pub/gnome/sources/at-spi/1.18/%{name}-%{version}.tar.bz2
+# Source0-md5:	d77f3b7111a847903f66f5cb111ee89e
 URL:		http://developer.gnome.org/projects/gap/
-BuildRequires:	ORBit2-devel >= 2.14.4
-BuildRequires:	atk-devel >= 1:1.12.4
+BuildRequires:	ORBit2-devel >= 2.14.7
+BuildRequires:	atk-devel >= 1:1.18.0
 BuildRequires:	autoconf
 BuildRequires:	automake
-BuildRequires:	gail-devel >= 1.9.3
+BuildRequires:	gail-devel >= 1.18.0
 BuildRequires:	gnome-common >= 2.12.0
-BuildRequires:	gtk+2-devel >= 2:2.10.7
-BuildRequires:	gtk-doc >= 1.7
-BuildRequires:	intltool
-BuildRequires:	libbonobo-devel >= 2.16.0
+BuildRequires:	gtk+2-devel >= 2:2.10.9
+BuildRequires:	gtk-doc >= 1.8
+BuildRequires:	intltool >= 0.35.5
+BuildRequires:	libbonobo-devel >= 2.18.0
 BuildRequires:	libtool
 BuildRequires:	pkgconfig
+BuildRequires:	popt-devel
 BuildRequires:	rpm-build >= 4.1-10
+BuildRequires:	xorg-lib-libXevie-devel
 BuildRequires:	xorg-lib-libXft-devel >= 2.1
 BuildRequires:	xorg-lib-libXtst-devel
 Obsoletes:	libat-spi1
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
-at-spi allows assistive technologies to access GTK-based
-applications. Essentially it exposes the internals of applications for
-automation, so tools such as screen readers, magnifiers, or even
-scripting interfaces can query and interact with GUI controls.
+at-spi allows assistive technologies to access GTK-based applications.
+Essentially it exposes the internals of applications for automation,
+so tools such as screen readers, magnifiers, or even scripting
+interfaces can query and interact with GUI controls.
 
 %description -l pl.UTF-8
 at-spi pozwala na korzystanie z urządzeń wspomagających w celu dostępu
@@ -48,11 +50,11 @@ Summary:	at-spi development files
 Summary(pl.UTF-8):	Pliki programistyczne at-spi
 Group:		X11/Development/Libraries
 Requires:	%{name} = %{version}-%{release}
-Requires:	ORBit2-devel >= 2.14.4
-Requires:	atk-devel >= 1:1.12.4
-Requires:	gail-devel >= 1.9.3
-Requires:	gtk+2-devel >= 2:2.10.7
-Requires:	libbonobo-devel >= 2.16.0
+Requires:	ORBit2-devel >= 2.14.7
+Requires:	atk-devel >= 1:1.18.0
+Requires:	gail-devel >= 1.18.0
+Requires:	gtk+2-devel >= 2:2.10.9
+Requires:	libbonobo-devel >= 2.18.0
 Obsoletes:	libat-spi1-devel
 
 %description devel
@@ -89,6 +91,8 @@ Dokumentacja API at-spi.
 %setup -q
 
 %build
+%{__glib_gettextize}
+%{__intltoolize}
 %{__libtoolize}
 %{__aclocal}
 %{__automake}
