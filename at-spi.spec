@@ -12,20 +12,21 @@ Group:		X11/Libraries
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/at-spi/1.20/%{name}-%{version}.tar.bz2
 # Source0-md5:	fd1f916463f379b435399e2b2075742f
 URL:		http://developer.gnome.org/projects/gap/
-BuildRequires:	ORBit2-devel >= 2.14.8
+BuildRequires:	ORBit2-devel >= 2.14.9
 BuildRequires:	atk-devel >= 1:1.20.0
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	gail-devel >= 1.20.0
 BuildRequires:	gnome-common >= 2.18.0
-BuildRequires:	gtk+2-devel >= 2:2.10.14
+BuildRequires:	gtk+2-devel >= 2:2.12.0
 BuildRequires:	gtk-doc >= 1.8
-BuildRequires:	intltool >= 0.35.5
-BuildRequires:	libbonobo-devel >= 2.18.0
+BuildRequires:	intltool >= 0.36.2
+BuildRequires:	libbonobo-devel >= 2.20.0
 BuildRequires:	libtool
 BuildRequires:	pkgconfig
 BuildRequires:	popt-devel
 BuildRequires:	rpm-build >= 4.1-10
+BuildRequires:	rpmbuild(macros) >= 1.219
 BuildRequires:	xorg-lib-libXevie-devel
 BuildRequires:	xorg-lib-libXft-devel >= 2.1
 BuildRequires:	xorg-lib-libXtst-devel
@@ -33,59 +34,71 @@ Obsoletes:	libat-spi1
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
-at-spi allows assistive technologies to access GTK-based applications.
+AT-SPI allows assistive technologies to access GTK-based applications.
 Essentially it exposes the internals of applications for automation,
 so tools such as screen readers, magnifiers, or even scripting
 interfaces can query and interact with GUI controls.
 
 %description -l pl.UTF-8
-at-spi pozwala na korzystanie z urządzeń wspomagających w celu dostępu
+AT-SPI pozwala na korzystanie z urządzeń wspomagających w celu dostępu
 do aplikacji bazujących na GTK. Przede wszystkim udostępnia wewnętrzne
 interfejsy aplikacji dla automatyzacji, więc urządzenia takie jak
 czytniki ekranu, lupy, czy nawet interfejsy skryptowe mogą odpytywać i
 współpracować z kontrolkami interfejsu graficznego.
 
 %package devel
-Summary:	at-spi development files
-Summary(pl.UTF-8):	Pliki programistyczne at-spi
+Summary:	AT-SPI development files
+Summary(pl.UTF-8):	Pliki programistyczne AT-SPI
 Group:		X11/Development/Libraries
 Requires:	%{name} = %{version}-%{release}
-Requires:	ORBit2-devel >= 2.14.7
-Requires:	atk-devel >= 1:1.18.0
-Requires:	gail-devel >= 1.18.0
-Requires:	gtk+2-devel >= 2:2.10.10
-Requires:	libbonobo-devel >= 2.18.0
+Requires:	ORBit2-devel >= 2.14.9
+Requires:	atk-devel >= 1:1.20.0
+Requires:	gail-devel >= 1.20.0
+Requires:	gtk+2-devel >= 2:2.12.0
+Requires:	libbonobo-devel >= 2.20.0
 Obsoletes:	libat-spi1-devel
 
 %description devel
-at-spi development files.
+AT-SPI development files.
 
 %description devel -l pl.UTF-8
-Pliki programistyczne at-spi.
+Pliki programistyczne AT-SPI.
 
 %package static
-Summary:	at-spi static library
-Summary(pl.UTF-8):	Statyczna biblioteka at-spi
+Summary:	AT-SPI static library
+Summary(pl.UTF-8):	Statyczna biblioteka AT-SPI
 Group:		X11/Development/Libraries
 Requires:	%{name}-devel = %{version}-%{release}
 
 %description static
-at-spi static library.
+AT-SPI static library.
 
 %description static -l pl.UTF-8
-Statyczna biblioteka at-spi.
+Statyczna biblioteka AT-SPI.
 
 %package apidocs
-Summary:	at-spi API documentation
-Summary(pl.UTF-8):	Dokumentacja API at-spi
+Summary:	AT-SPI API documentation
+Summary(pl.UTF-8):	Dokumentacja API AT-SPI
 Group:		Documentation
 Requires:	gtk-doc-common
 
 %description apidocs
-at-spi API documentation.
+AT-SPI API documentation.
 
 %description apidocs -l pl.UTF-8
-Dokumentacja API at-spi.
+Dokumentacja API AT-SPI.
+
+%package -n python-pyatspi
+Summary:	AT-SPI Python bindings
+Summary(pl.UTF-8):	Wiązania AT-SPI dla Pythona
+Group:		Development/Languages/Python
+Requires:	python-pyorbit
+
+%description -n python-pyatspi
+AT-SPI Python bindings.
+
+%description -n python-pyatspi -l pl.UTF-8
+Wiązania AT-SPI dla Pythona.
 
 %prep
 %setup -q
@@ -113,6 +126,8 @@ rm -rf $RPM_BUILD_ROOT
 
 # no static modules
 rm -f $RPM_BUILD_ROOT%{_libdir}/{gtk-2.0/modules,orbit-2.0}/*.{la,a}
+
+%py_postclean
 
 %find_lang %{name}
 
@@ -148,3 +163,8 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %{_gtkdocdir}/*
 %{_docdir}/%{name}-%{version}
+
+%files -n python-pyatspi
+%defattr(644,root,root,755)
+%dir %{py_sitedir}/pyatspi
+%{py_sitedir}/pyatspi/*.py[co]
