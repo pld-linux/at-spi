@@ -5,12 +5,12 @@
 Summary:	Assistive Technology Service Provider Interface
 Summary(pl.UTF-8):	Interfejs pozwalający na korzystanie z urządzeń wspomagających
 Name:		at-spi
-Version:	1.22.0
+Version:	1.22.1
 Release:	1
 License:	LGPL v2+
 Group:		X11/Libraries
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/at-spi/1.22/%{name}-%{version}.tar.bz2
-# Source0-md5:	85dc343588016ecf854830fab0cd6fdc
+# Source0-md5:	2ee1b35ef25e753e6bac840a418608f5
 URL:		http://developer.gnome.org/projects/gap/
 BuildRequires:	ORBit2-devel >= 2.14.10
 BuildRequires:	atk-devel >= 1:1.22.0
@@ -22,7 +22,7 @@ BuildRequires:	gnome-common >= 2.20.0
 BuildRequires:	gtk+2-devel >= 2:2.12.8
 BuildRequires:	gtk-doc >= 1.8
 BuildRequires:	intltool >= 0.36.2
-BuildRequires:	libbonobo-devel >= 2.20.0
+BuildRequires:	libbonobo-devel >= 2.22.0
 BuildRequires:	libtool
 BuildRequires:	pkgconfig
 BuildRequires:	popt-devel
@@ -59,7 +59,7 @@ Requires:	%{name} = %{version}-%{release}
 Requires:	ORBit2-devel >= 2.14.10
 Requires:	atk-devel >= 1:1.22.0
 Requires:	gtk+2-devel >= 2:2.12.8
-Requires:	libbonobo-devel >= 2.20.0
+Requires:	libbonobo-devel >= 2.22.0
 Obsoletes:	libat-spi1-devel
 
 %description devel
