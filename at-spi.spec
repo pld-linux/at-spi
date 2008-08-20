@@ -36,8 +36,6 @@ Obsoletes:	libat-spi1
 Conflicts:	glibc-misc < 6:2.7
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
-%define		_libexecdir	%{_libdir}/%{name}
-
 %description
 AT-SPI allows assistive technologies to access GTK-based applications.
 Essentially it exposes the internals of applications for automation,
@@ -153,7 +151,6 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %ghost %{_libdir}/libloginhelper.so.0
 %attr(755,root,root) %{_libdir}/libspi.so.*.*.*
 %attr(755,root,root) %ghost %{_libdir}/libspi.so.0
-%dir %{_libexecdir}
 %attr(755,root,root) %{_libexecdir}/at-spi-registryd
 %attr(755,root,root) %{_libdir}/orbit-2.0/Accessibility_LoginHelper_module.so
 %attr(755,root,root) %{_libdir}/orbit-2.0/Accessibility_module.so
