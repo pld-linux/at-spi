@@ -5,24 +5,24 @@
 Summary:	Assistive Technology Service Provider Interface
 Summary(pl.UTF-8):	Interfejs pozwalający na korzystanie z urządzeń wspomagających
 Name:		at-spi
-Version:	1.22.1
+Version:	1.24.0
 Release:	1
 License:	LGPL v2+
 Group:		X11/Libraries
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/at-spi/1.22/%{name}-%{version}.tar.bz2
-# Source0-md5:	2ee1b35ef25e753e6bac840a418608f5
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/at-spi/1.24/%{name}-%{version}.tar.bz2
+# Source0-md5:	e1c7bbf6eb19b9ca9c509acb238e5c56
 URL:		http://developer.gnome.org/projects/gap/
+BuildRequires:	GConf2-devel >= 2.24.0
 BuildRequires:	ORBit2-devel >= 2.14.10
-BuildRequires:	atk-devel >= 1:1.22.0
+BuildRequires:	atk-devel >= 1:1.24.0
 BuildRequires:	autoconf
 BuildRequires:	automake
-BuildRequires:	gail-devel >= 1.22.0
 BuildRequires:	gettext-devel
 BuildRequires:	gnome-common >= 2.20.0
-BuildRequires:	gtk+2-devel >= 2:2.12.8
+BuildRequires:	gtk+2-devel >= 2:2.14.0
 BuildRequires:	gtk-doc >= 1.8
 BuildRequires:	intltool >= 0.36.2
-BuildRequires:	libbonobo-devel >= 2.22.0
+BuildRequires:	libbonobo-devel >= 2.24.0
 BuildRequires:	libtool
 BuildRequires:	pkgconfig
 BuildRequires:	popt-devel
@@ -31,12 +31,12 @@ BuildRequires:	rpmbuild(macros) >= 1.219
 BuildRequires:	xorg-lib-libXevie-devel
 BuildRequires:	xorg-lib-libXft-devel >= 2.1
 BuildRequires:	xorg-lib-libXtst-devel
+Requires(post,postun):	/sbin/ldconfig
+Requires(post,preun):	GConf2
 Obsoletes:	libat-spi1
 # sr@Latn vs. sr@latin
 Conflicts:	glibc-misc < 6:2.7
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
-
-%define		_libexecdir	%{_libdir}/%{name}
 
 %description
 AT-SPI allows assistive technologies to access GTK-based applications.
@@ -57,9 +57,9 @@ Summary(pl.UTF-8):	Pliki programistyczne AT-SPI
 Group:		X11/Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 Requires:	ORBit2-devel >= 2.14.10
-Requires:	atk-devel >= 1:1.22.0
-Requires:	gtk+2-devel >= 2:2.12.8
-Requires:	libbonobo-devel >= 2.22.0
+Requires:	atk-devel >= 1:1.24.0
+Requires:	gtk+2-devel >= 2:2.14.0
+Requires:	libbonobo-devel >= 2.24.0
 Obsoletes:	libat-spi1-devel
 
 %description devel
@@ -133,14 +133,18 @@ rm -f $RPM_BUILD_ROOT%{_libdir}/{gtk-2.0/modules,orbit-2.0}/*.{la,a}
 
 %py_postclean
 
-[ -d $RPM_BUILD_ROOT%{_datadir}/locale/sr@latin ] || \
-	mv -f $RPM_BUILD_ROOT%{_datadir}/locale/sr@{Latn,latin}
 %find_lang %{name}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
-%post	-p /sbin/ldconfig
+%post
+%gconf_schema_install at-spi.schemas
+/sbin/ldconfig
+
+%preun
+%gconf_schema_uninstall at-spi.schemas
+
 %postun	-p /sbin/ldconfig
 
 %files -f %{name}.lang
@@ -151,11 +155,11 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %ghost %{_libdir}/libloginhelper.so.0
 %attr(755,root,root) %{_libdir}/libspi.so.*.*.*
 %attr(755,root,root) %ghost %{_libdir}/libspi.so.0
-%dir %{_libexecdir}
 %attr(755,root,root) %{_libexecdir}/at-spi-registryd
 %attr(755,root,root) %{_libdir}/orbit-2.0/Accessibility_LoginHelper_module.so
 %attr(755,root,root) %{_libdir}/orbit-2.0/Accessibility_module.so
 %attr(755,root,root) %{_libdir}/gtk-2.0/modules/libatk-bridge.so
+%{_sysconfdir}/gconf/schemas/at-spi.schemas
 %{_libdir}/bonobo/servers/Accessibility_Registry.server
 %{_datadir}/idl/at-spi-1.0
 
