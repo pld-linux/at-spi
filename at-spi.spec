@@ -10,7 +10,7 @@ Release:	1
 License:	LGPL v2+
 Group:		X11/Libraries
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/at-spi/1.24/%{name}-%{version}.tar.bz2
-# Source0-md5:	e1c7bbf6eb19b9ca9c509acb238e5c56
+# Source0-md5:	e546a35e21d127b502a3c57550a189a0
 URL:		http://developer.gnome.org/projects/gap/
 BuildRequires:	GConf2-devel >= 2.24.0
 BuildRequires:	ORBit2-devel >= 2.14.10
