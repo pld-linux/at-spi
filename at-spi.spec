@@ -5,12 +5,12 @@
 Summary:	Assistive Technology Service Provider Interface
 Summary(pl.UTF-8):	Interfejs pozwalający na korzystanie z urządzeń wspomagających
 Name:		at-spi
-Version:	1.25.5
+Version:	1.25.92
 Release:	1
 License:	LGPL v2+
 Group:		X11/Libraries
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/at-spi/1.25/%{name}-%{version}.tar.bz2
-# Source0-md5:	9d9b6ad01c0dc8a6aff8b948368bddff
+# Source0-md5:	1ef31941b3d8814964faecfa7a3ffd54
 URL:		http://developer.gnome.org/projects/gap/
 BuildRequires:	GConf2-devel >= 2.24.0
 BuildRequires:	ORBit2-devel >= 2.14.10
