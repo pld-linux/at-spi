@@ -5,18 +5,19 @@
 Summary:	Assistive Technology Service Provider Interface
 Summary(pl.UTF-8):	Interfejs pozwalający na korzystanie z urządzeń wspomagających
 Name:		at-spi
-Version:	1.26.0
-Release:	2
+Version:	1.28.0
+Release:	1
 License:	LGPL v2+
 Group:		X11/Libraries
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/at-spi/1.26/%{name}-%{version}.tar.bz2
-# Source0-md5:	3f2f7d29b45eff08adf56af0d31d3984
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/at-spi/1.28/%{name}-%{version}.tar.bz2
+# Source0-md5:	06f6da7873dffc8a26b04e304236e222
 URL:		http://developer.gnome.org/projects/gap/
 BuildRequires:	GConf2-devel >= 2.24.0
 BuildRequires:	ORBit2-devel >= 2.14.10
 BuildRequires:	atk-devel >= 1:1.24.0
 BuildRequires:	autoconf
 BuildRequires:	automake
+BuildRequires:	dbus-glib-devel >= 0.76
 BuildRequires:	gettext-devel
 BuildRequires:	gnome-common >= 2.20.0
 BuildRequires:	gtk+2-devel >= 2:2.14.0
@@ -28,6 +29,7 @@ BuildRequires:	pkgconfig
 BuildRequires:	popt-devel
 BuildRequires:	rpm-build >= 4.1-10
 BuildRequires:	rpmbuild(macros) >= 1.219
+BuildRequires:	xorg-lib-libSM-devel
 BuildRequires:	xorg-lib-libXevie-devel
 BuildRequires:	xorg-lib-libXft-devel >= 2.1
 BuildRequires:	xorg-lib-libXtst-devel
@@ -132,7 +134,7 @@ rm -rf $RPM_BUILD_ROOT
 # no static modules
 rm -f $RPM_BUILD_ROOT%{_libdir}/{gtk-2.0/modules,orbit-2.0}/*.{la,a}
 
-mv $RPM_BUILD_ROOT%{_datadir}/locale/nds{_DE,}
+rm -rf $RPM_BUILD_ROOT%{_datadir}/locale/ca@valencia
 
 %py_postclean
 
@@ -163,6 +165,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/orbit-2.0/Accessibility_module.so
 %attr(755,root,root) %{_libdir}/gtk-2.0/modules/libatk-bridge.so
 %{_sysconfdir}/gconf/schemas/at-spi.schemas
+%{_sysconfdir}/xdg/autostart/at-spi-registryd.desktop
 %{_libdir}/bonobo/servers/Accessibility_Registry.server
 %{_datadir}/idl/at-spi-1.0
 
