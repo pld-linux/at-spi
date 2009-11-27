@@ -18,6 +18,7 @@ BuildRequires:	atk-devel >= 1:1.24.0
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	dbus-glib-devel >= 0.76
+BuildRequires:	docbook-dtd412-xml
 BuildRequires:	gettext-devel
 BuildRequires:	gnome-common >= 2.20.0
 BuildRequires:	gtk+2-devel >= 2:2.14.0
@@ -27,7 +28,9 @@ BuildRequires:	libbonobo-devel >= 2.24.0
 BuildRequires:	libtool
 BuildRequires:	pkgconfig
 BuildRequires:	popt-devel
+BuildRequires:	python-modules
 BuildRequires:	rpm-build >= 4.1-10
+BuildRequires:	rpm-pythonprov
 BuildRequires:	rpmbuild(macros) >= 1.219
 BuildRequires:	xorg-lib-libSM-devel
 BuildRequires:	xorg-lib-libXft-devel >= 2.1
