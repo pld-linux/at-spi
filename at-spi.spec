@@ -5,23 +5,23 @@
 Summary:	Assistive Technology Service Provider Interface
 Summary(pl.UTF-8):	Interfejs pozwalający na korzystanie z urządzeń wspomagających
 Name:		at-spi
-Version:	1.28.1
-Release:	4
+Version:	1.30.0
+Release:	1
 License:	LGPL v2+
 Group:		X11/Libraries
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/at-spi/1.28/%{name}-%{version}.tar.bz2
-# Source0-md5:	ff29958339cbff5a0e0f34e4761e7633
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/at-spi/1.30/%{name}-%{version}.tar.bz2
+# Source0-md5:	64c64cc00356bffe4e93382622402c1b
 URL:		http://developer.gnome.org/projects/gap/
 BuildRequires:	GConf2-devel >= 2.24.0
 BuildRequires:	ORBit2-devel >= 2.14.10
-BuildRequires:	atk-devel >= 1:1.24.0
+BuildRequires:	atk-devel >= 1:1.30.0
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	dbus-glib-devel >= 0.76
 BuildRequires:	docbook-dtd412-xml
 BuildRequires:	gettext-devel
 BuildRequires:	gnome-common >= 2.20.0
-BuildRequires:	gtk+2-devel >= 2:2.14.0
+BuildRequires:	gtk+2-devel >= 2:2.20.0
 BuildRequires:	gtk-doc >= 1.8
 BuildRequires:	intltool >= 0.40.0
 BuildRequires:	libbonobo-devel >= 2.24.0
@@ -32,6 +32,7 @@ BuildRequires:	python-modules
 BuildRequires:	rpm-build >= 4.1-10
 BuildRequires:	rpm-pythonprov
 BuildRequires:	rpmbuild(macros) >= 1.219
+BuildRequires:	sed >= 4.0
 BuildRequires:	xorg-lib-libSM-devel
 BuildRequires:	xorg-lib-libXft-devel >= 2.1
 BuildRequires:	xorg-lib-libXtst-devel
@@ -61,8 +62,8 @@ Summary(pl.UTF-8):	Pliki programistyczne AT-SPI
 Group:		X11/Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 Requires:	ORBit2-devel >= 2.14.10
-Requires:	atk-devel >= 1:1.24.0
-Requires:	gtk+2-devel >= 2:2.14.0
+Requires:	atk-devel >= 1:1.30.0
+Requires:	gtk+2-devel >= 2:2.20.0
 Requires:	libbonobo-devel >= 2.24.0
 Obsoletes:	libat-spi1-devel
 
@@ -111,6 +112,8 @@ Wiązania AT-SPI dla Pythona.
 
 %prep
 %setup -q
+%{__sed} -i -e 's/^en@shaw//' po/LINGUAS
+%{__rm} po/en@shaw.po
 
 %build
 %{__glib_gettextize}
