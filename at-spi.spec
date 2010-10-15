@@ -6,7 +6,7 @@ Summary:	Assistive Technology Service Provider Interface
 Summary(pl.UTF-8):	Interfejs pozwalający na korzystanie z urządzeń wspomagających
 Name:		at-spi
 Version:	1.32.0
-Release:	1
+Release:	2
 License:	LGPL v2+
 Group:		X11/Libraries
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/at-spi/1.32/%{name}-%{version}.tar.bz2
@@ -36,9 +36,8 @@ BuildRequires:	sed >= 4.0
 BuildRequires:	xorg-lib-libSM-devel
 BuildRequires:	xorg-lib-libXft-devel >= 2.1
 BuildRequires:	xorg-lib-libXtst-devel
-Requires(post,postun):	/sbin/ldconfig
 Requires(post,preun):	GConf2
-Obsoletes:	libat-spi1
+Requires:	%{name}-libs = %{version}-%{release}
 # sr@Latn vs. sr@latin
 Conflicts:	glibc-misc < 6:2.7
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -55,6 +54,19 @@ do aplikacji bazujących na GTK. Przede wszystkim udostępnia wewnętrzne
 interfejsy aplikacji dla automatyzacji, więc urządzenia takie jak
 czytniki ekranu, lupy, czy nawet interfejsy skryptowe mogą odpytywać i
 współpracować z kontrolkami interfejsu graficznego.
+
+%package libs
+Summary:	at-spi libraries themself
+Summary(pl.UTF-8):	Same biblioteki at-spi
+Group:		Libraries
+Requires(post,postun):	/sbin/ldconfig
+Obsoletes:	libat-spi1
+
+%description libs
+at-spi libraries themself.
+
+%description libs -l pl.UTF-8
+Same biblioteki at-spi.
 
 %package devel
 Summary:	AT-SPI development files
@@ -148,14 +160,20 @@ rm -rf $RPM_BUILD_ROOT
 
 %post
 %gconf_schema_install at-spi.schemas
-/sbin/ldconfig
 
 %preun
 %gconf_schema_uninstall at-spi.schemas
 
-%postun	-p /sbin/ldconfig
+%post	libs -p /sbin/ldconfig
+%postun	libs -p /sbin/ldconfig
 
 %files -f %{name}.lang
+%defattr(644,root,root,755)
+%{_sysconfdir}/gconf/schemas/at-spi.schemas
+%{_sysconfdir}/xdg/autostart/at-spi-registryd.desktop
+%{_datadir}/idl/at-spi-1.0
+
+%files libs
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/libcspi.so.*.*.*
 %attr(755,root,root) %ghost %{_libdir}/libcspi.so.0
@@ -167,10 +185,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/orbit-2.0/Accessibility_LoginHelper_module.so
 %attr(755,root,root) %{_libdir}/orbit-2.0/Accessibility_module.so
 %attr(755,root,root) %{_libdir}/gtk-2.0/modules/libatk-bridge.so
-%{_sysconfdir}/gconf/schemas/at-spi.schemas
-%{_sysconfdir}/xdg/autostart/at-spi-registryd.desktop
 %{_libdir}/bonobo/servers/Accessibility_Registry.server
-%{_datadir}/idl/at-spi-1.0
 
 %files devel
 %defattr(644,root,root,755)
