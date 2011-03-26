@@ -56,14 +56,14 @@ czytniki ekranu, lupy, czy nawet interfejsy skryptowe mogą odpytywać i
 współpracować z kontrolkami interfejsu graficznego.
 
 %package libs
-Summary:	at-spi libraries themself
+Summary:	at-spi libraries themselves
 Summary(pl.UTF-8):	Same biblioteki at-spi
 Group:		Libraries
 Requires(post,postun):	/sbin/ldconfig
 Obsoletes:	libat-spi1
 
 %description libs
-at-spi libraries themself.
+at-spi libraries themselves.
 
 %description libs -l pl.UTF-8
 Same biblioteki at-spi.
@@ -124,8 +124,6 @@ Wiązania AT-SPI dla Pythona.
 
 %prep
 %setup -q
-%{__sed} -i -e 's/^en@shaw//' po/LINGUAS
-%{__rm} po/en@shaw.po
 
 %build
 %{__glib_gettextize}
@@ -149,7 +147,7 @@ rm -rf $RPM_BUILD_ROOT
 	HTML_DIR=%{_gtkdocdir}
 
 # no static modules
-rm -f $RPM_BUILD_ROOT%{_libdir}/{gtk-2.0/modules,orbit-2.0}/*.{la,a}
+%{__rm} $RPM_BUILD_ROOT%{_libdir}/{gtk-2.0/modules,orbit-2.0}/*.{la,a}
 
 %py_postclean
 
