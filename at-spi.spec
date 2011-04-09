@@ -6,7 +6,7 @@ Summary:	Assistive Technology Service Provider Interface
 Summary(pl.UTF-8):	Interfejs pozwalający na korzystanie z urządzeń wspomagających
 Name:		at-spi
 Version:	1.32.0
-Release:	2
+Release:	3
 License:	LGPL v2+
 Group:		X11/Libraries
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/at-spi/1.32/%{name}-%{version}.tar.bz2
@@ -153,6 +153,8 @@ rm -rf $RPM_BUILD_ROOT
 
 %find_lang %{name}
 
+%{__rm} $RPM_BUILD_ROOT%{_libdir}/*.la
+
 %clean
 rm -rf $RPM_BUILD_ROOT
 
@@ -191,9 +193,6 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/libloginhelper.so
 %attr(755,root,root) %{_libdir}/libspi.so
 %{_includedir}/at-spi-1.0
-%{_libdir}/libcspi.la
-%{_libdir}/libloginhelper.la
-%{_libdir}/libspi.la
 %{_pkgconfigdir}/cspi-1.0.pc
 %{_pkgconfigdir}/libloginhelper-1.0.pc
 %{_pkgconfigdir}/libspi-1.0.pc
