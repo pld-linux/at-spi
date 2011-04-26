@@ -6,7 +6,7 @@ Summary:	Assistive Technology Service Provider Interface
 Summary(pl.UTF-8):	Interfejs pozwalający na korzystanie z urządzeń wspomagających
 Name:		at-spi
 Version:	1.32.0
-Release:	3
+Release:	4
 License:	LGPL v2+
 Group:		X11/Libraries
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/at-spi/1.32/%{name}-%{version}.tar.bz2
@@ -109,17 +109,17 @@ AT-SPI API documentation.
 %description apidocs -l pl.UTF-8
 Dokumentacja API AT-SPI.
 
-%package -n python-pyatspi
+%package -n python-pyatspi_corba
 Summary:	AT-SPI Python bindings
 Summary(pl.UTF-8):	Wiązania AT-SPI dla Pythona
 Group:		Development/Languages/Python
 Requires:	python-pyorbit
 Obsoletes:	python-pyspi
 
-%description -n python-pyatspi
+%description -n python-pyatspi_corba
 AT-SPI Python bindings.
 
-%description -n python-pyatspi -l pl.UTF-8
+%description -n python-pyatspi_corba -l pl.UTF-8
 Wiązania AT-SPI dla Pythona.
 
 %prep
@@ -133,9 +133,9 @@ Wiązania AT-SPI dla Pythona.
 %{__automake}
 %{__autoconf}
 %configure \
-	%{!?with_static_libs:--disable-static} \
+	%{__enable_disable static_libs static} \
+	--enable-relocate \
 	--enable-gtk-doc \
-	--enable-static \
 	--with-html-dir=%{_gtkdocdir}
 %{__make}
 
@@ -147,7 +147,7 @@ rm -rf $RPM_BUILD_ROOT
 	HTML_DIR=%{_gtkdocdir}
 
 # no static modules
-%{__rm} $RPM_BUILD_ROOT%{_libdir}/{gtk-2.0/modules,orbit-2.0}/*.{la,a}
+%{__rm} $RPM_BUILD_ROOT%{_libdir}/{gtk-2.0/modules/at-spi-corba/modules,orbit-2.0}/*.{la,a}
 
 %py_postclean
 
@@ -184,7 +184,9 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libexecdir}/at-spi-registryd
 %attr(755,root,root) %{_libdir}/orbit-2.0/Accessibility_LoginHelper_module.so
 %attr(755,root,root) %{_libdir}/orbit-2.0/Accessibility_module.so
-%attr(755,root,root) %{_libdir}/gtk-2.0/modules/libatk-bridge.so
+%dir %{_libdir}/gtk-2.0/modules/at-spi-corba
+%dir %{_libdir}/gtk-2.0/modules/at-spi-corba/modules
+%attr(755,root,root) %{_libdir}/gtk-2.0/modules/at-spi-corba/modules/libatk-bridge.so
 %{_libdir}/bonobo/servers/Accessibility_Registry.server
 
 %files devel
@@ -210,7 +212,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_gtkdocdir}/at-spi-cspi
 %{_docdir}/%{name}-%{version}
 
-%files -n python-pyatspi
+%files -n python-pyatspi_corba
 %defattr(644,root,root,755)
-%dir %{py_sitedir}/pyatspi
-%{py_sitedir}/pyatspi/*.py[co]
+%dir %{py_sitedir}/pyatspi_corba
+%{py_sitedir}/pyatspi_corba/*.py[co]
