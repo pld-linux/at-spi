@@ -6,11 +6,12 @@ Summary:	Assistive Technology Service Provider Interface
 Summary(pl.UTF-8):	Interfejs pozwalający na korzystanie z urządzeń wspomagających
 Name:		at-spi
 Version:	1.32.0
-Release:	5
+Release:	6
 License:	LGPL v2+
 Group:		X11/Libraries
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/at-spi/1.32/%{name}-%{version}.tar.bz2
 # Source0-md5:	bc62c41f18529d56271fa1ae6cad8629
+Patch0:		%{name}-format.patch
 URL:		http://developer.gnome.org/projects/gap/
 BuildRequires:	GConf2-devel >= 2.24.0
 BuildRequires:	ORBit2-devel >= 2.14.10
@@ -28,13 +29,16 @@ BuildRequires:	libbonobo-devel >= 2.24.0
 BuildRequires:	libtool
 BuildRequires:	pkgconfig
 BuildRequires:	popt-devel
-BuildRequires:	python-modules
+BuildRequires:	python >= 1:2.4
+BuildRequires:	python-modules >= 1:2.4
 BuildRequires:	rpm-build >= 4.1-10
 BuildRequires:	rpm-pythonprov
 BuildRequires:	rpmbuild(macros) >= 1.219
 BuildRequires:	sed >= 4.0
+BuildRequires:	xorg-lib-libX11-devel
 BuildRequires:	xorg-lib-libSM-devel
 BuildRequires:	xorg-lib-libXft-devel >= 2.1
+BuildRequires:	xorg-lib-libXi-devel
 BuildRequires:	xorg-lib-libXtst-devel
 Requires(post,preun):	GConf2
 Requires:	%{name}-libs = %{version}-%{release}
@@ -56,17 +60,17 @@ czytniki ekranu, lupy, czy nawet interfejsy skryptowe mogą odpytywać i
 współpracować z kontrolkami interfejsu graficznego.
 
 %package libs
-Summary:	at-spi libraries themselves
-Summary(pl.UTF-8):	Same biblioteki at-spi
+Summary:	Base at-spi libraries and modules
+Summary(pl.UTF-8):	Podstawowe biblioteki i moduły at-spi
 Group:		Libraries
 Requires(post,postun):	/sbin/ldconfig
 Obsoletes:	libat-spi1
 
 %description libs
-at-spi libraries themselves.
+Base at-spi libraries and modules.
 
 %description libs -l pl.UTF-8
-Same biblioteki at-spi.
+Podstawowe biblioteki i moduły at-spi.
 
 %package devel
 Summary:	AT-SPI development files
@@ -114,6 +118,8 @@ Summary:	AT-SPI Python bindings
 Summary(pl.UTF-8):	Wiązania AT-SPI dla Pythona
 Group:		Development/Languages/Python
 Requires:	python-pyorbit
+# python-pyatspi 2 is new, at-spi2 based implementation
+Obsoletes:	python-pyatspi < 2
 Obsoletes:	python-pyspi
 
 %description -n python-pyatspi_corba
@@ -124,6 +130,7 @@ Wiązania AT-SPI dla Pythona.
 
 %prep
 %setup -q
+%patch0 -p1
 
 %build
 %{__glib_gettextize}
@@ -151,9 +158,11 @@ rm -rf $RPM_BUILD_ROOT
 
 %py_postclean
 
-%find_lang %{name}
-
 %{__rm} $RPM_BUILD_ROOT%{_libdir}/*.la
+
+%{__mv} -f $RPM_BUILD_ROOT%{_datadir}/locale/{sr@ije,sr@ijekavian}
+
+%find_lang %{name}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -175,6 +184,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files libs
 %defattr(644,root,root,755)
+%doc AUTHORS ChangeLog MAINTAINERS NEWS README TODO
 %attr(755,root,root) %{_libdir}/libcspi.so.*.*.*
 %attr(755,root,root) %ghost %{_libdir}/libcspi.so.0
 %attr(755,root,root) %{_libdir}/libloginhelper.so.*.*.*
