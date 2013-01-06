@@ -63,7 +63,6 @@ współpracować z kontrolkami interfejsu graficznego.
 Summary:	Base at-spi libraries and modules
 Summary(pl.UTF-8):	Podstawowe biblioteki i moduły at-spi
 Group:		Libraries
-Requires(post,postun):	/sbin/ldconfig
 Obsoletes:	libat-spi1
 
 %description libs
