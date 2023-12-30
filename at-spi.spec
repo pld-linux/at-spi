@@ -76,7 +76,7 @@ Podstawowe biblioteki i moduły at-spi.
 Summary:	AT-SPI development files
 Summary(pl.UTF-8):	Pliki programistyczne AT-SPI
 Group:		X11/Development/Libraries
-Requires:	%{name} = %{version}-%{release}
+Requires:	%{name}-libs = %{version}-%{release}
 Requires:	ORBit2-devel >= 2.14.10
 Requires:	atk-devel >= 1:1.30.0
 Requires:	gtk+2-devel >= 2:2.20.0
