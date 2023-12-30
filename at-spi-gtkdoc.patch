@@ -1,0 +1,10 @@
+--- at-spi-1.32.0/gtk-doc.make.orig	2010-09-27 10:47:26.000000000 +0200
++++ at-spi-1.32.0/gtk-doc.make	2020-01-12 10:31:48.969058046 +0100
+@@ -98,7 +98,6 @@
+ tmpl-build.stamp: $(DOC_MODULE)-decl.txt $(SCANOBJ_FILES) $(DOC_MODULE)-sections.txt $(DOC_MODULE)-overrides.txt
+ 	@echo 'gtk-doc: Rebuilding template files'
+ 	@-chmod -R u+w $(srcdir)
+-	@cd $(srcdir) && gtkdoc-mktmpl --module=$(DOC_MODULE) $(MKTMPL_OPTIONS)
+ 	@touch tmpl-build.stamp
+ 
+ tmpl.stamp: tmpl-build.stamp

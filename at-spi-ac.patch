@@ -1,0 +1,11 @@
+--- at-spi-1.32.0/configure.in.orig	2023-12-30 14:16:06.812260887 +0100
++++ at-spi-1.32.0/configure.in	2023-12-30 14:16:10.828905794 +0100
+@@ -69,7 +69,7 @@ AM_GLIB_GNU_GETTEXT
+ 
+ # AM_GLIB_GNU_GETTEXT above subst. $DATADIRNAME
+ # this is the directory where the *.{mo,gmo} files are installed
+-localedir='${prefix}/${DATADIRNAME}/locale'
++localedir='${prefix}/'${DATADIRNAME}'/locale'
+ AC_SUBST(localedir)
+ 
+ GTK_DOC_CHECK([1.0])

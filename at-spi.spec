@@ -1,6 +1,6 @@
 #
 # Conditional build:
-%bcond_without	static_libs	# don't build static library
+%bcond_without	static_libs	# static library
 
 Summary:	Assistive Technology Service Provider Interface
 Summary(pl.UTF-8):	Interfejs pozwalający na korzystanie z urządzeń wspomagających
@@ -12,6 +12,8 @@ Group:		X11/Libraries
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/at-spi/1.32/%{name}-%{version}.tar.bz2
 # Source0-md5:	bc62c41f18529d56271fa1ae6cad8629
 Patch0:		%{name}-format.patch
+Patch1:		%{name}-gtkdoc.patch
+Patch2:		%{name}-ac.patch
 URL:		http://developer.gnome.org/projects/gap/
 BuildRequires:	GConf2-devel >= 2.24.0
 BuildRequires:	ORBit2-devel >= 2.14.10
@@ -31,10 +33,11 @@ BuildRequires:	pkgconfig
 BuildRequires:	popt-devel
 BuildRequires:	python >= 1:2.4
 BuildRequires:	python-modules >= 1:2.4
-BuildRequires:	rpm-build >= 4.1-10
+BuildRequires:	rpm-build >= 4.6
 BuildRequires:	rpm-pythonprov
 BuildRequires:	rpmbuild(macros) >= 1.219
 BuildRequires:	sed >= 4.0
+BuildRequires:	xorg-lib-libICE-devel
 BuildRequires:	xorg-lib-libSM-devel
 BuildRequires:	xorg-lib-libX11-devel
 BuildRequires:	xorg-lib-libXft-devel >= 2.1
@@ -42,8 +45,6 @@ BuildRequires:	xorg-lib-libXi-devel
 BuildRequires:	xorg-lib-libXtst-devel
 Requires(post,preun):	GConf2
 Requires:	%{name}-libs = %{version}-%{release}
-# sr@Latn vs. sr@latin
-Conflicts:	glibc-misc < 6:2.7
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -131,18 +132,22 @@ Wiązania AT-SPI dla Pythona.
 %prep
 %setup -q
 %patch0 -p1
+%patch1 -p1
+%patch2 -p1
 
 %build
 %{__glib_gettextize}
 %{__intltoolize}
 %{__libtoolize}
-%{__aclocal}
-%{__automake}
+%{__aclocal} -I m4
 %{__autoconf}
+%{__autoheader}
+%{__automake}
 %configure \
-	%{__enable_disable static_libs static} \
-	--enable-relocate \
+	--enable-compile-warnings=minimum \
 	--enable-gtk-doc \
+	--enable-relocate \
+	%{__enable_disable static_libs static} \
 	--with-html-dir=%{_gtkdocdir}
 %{__make}
 
@@ -155,12 +160,12 @@ rm -rf $RPM_BUILD_ROOT
 
 # no static modules
 %{__rm} $RPM_BUILD_ROOT%{_libdir}/{gtk-2.0/modules/at-spi-corba/modules,orbit-2.0}/*.{la,a}
+# obsoleted by pkg-config
+%{__rm} $RPM_BUILD_ROOT%{_libdir}/*.la
 
 %py_postclean
 
-%{__rm} $RPM_BUILD_ROOT%{_libdir}/*.la
-
-%{__mv} -f $RPM_BUILD_ROOT%{_localedir}/{sr@ije,sr@ijekavian}
+%{__mv} $RPM_BUILD_ROOT%{_localedir}/{sr@ije,sr@ijekavian}
 
 %find_lang %{name}
 
